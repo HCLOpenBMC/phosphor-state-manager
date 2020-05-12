@@ -1,5 +1,5 @@
 [Unit]
-Description=Phosphor Host State Manager
+Description=Phosphor Host State Manager for the host %i
 Wants=mapper-wait@-xyz-openbmc_project-control-host0-auto_reboot.service
 After=mapper-wait@-xyz-openbmc_project-control-host0-auto_reboot.service
 Before=mapper-wait@-xyz-openbmc_project-state-host.service
@@ -8,10 +8,8 @@ Wants=obmc-mapper.target
 After=obmc-mapper.target
 
 [Service]
-ExecStart=/usr/bin/phosphor-host-state-manager
+ExecStart=/usr/bin/phosphor-host-state-manager %i
 Restart=always
-Type=dbus
-BusName=xyz.openbmc_project.State.Host
 
 [Install]
 WantedBy=multi-user.target
